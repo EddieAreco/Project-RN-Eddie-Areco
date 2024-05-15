@@ -1,0 +1,1 @@
+export const baseUrl = 'https://proyecto-react-4a7d4-default-rtdb.firebaseio.com/'
