@@ -6,7 +6,7 @@ import Home from '../screens/Home'
 import ItemListCategory from '../screens/ItemListCategory'
 import Detail from '../screens/Detail'
 
-import { colors } from '../constants/colors'
+// import { colors } from '../constants/colors'
 
 import { useSelector } from 'react-redux'
 import { useGetProfileImageQuery } from '../services/shopService'
@@ -37,7 +37,7 @@ const HomeStack = ({ navigation }) => {
 
                     <Pressable onPress={() => navigation.goBack()} >
 
-                        <Feather name="arrow-left-circle" size={30} color={colors.primary} />
+                        <Feather name="arrow-left-circle" size={30} color={'red'} />
 
                     </Pressable>
 

@@ -1,73 +1,74 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, useWindowDimensions, Platform, SafeAreaView } from 'react-native';
+import { useCallback, useEffect, useState } from 'react';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { useFonts } from 'expo-font';
+import Home from '../../src/screens/Home';
 
-import InputForm from '../../components/inputForm'
+import Navigator from '../../src/navigation/Navigator';
+import { Provider } from 'react-redux';
+
+import store from '../../src/Store/index.js'
+
+// import { initSQLiteDB } from './src/persistence';
+
+// (async () => {
+
+//   try {
+
+//     const response = await initSQLiteDB()
+//     console.log({responseCreatinDB: response})
+//     console.log('DB INICICIALIZADA')
+    
+//   } catch (error) {
+//     console.log({errorCreatingDB: error})
+//   }
+
+// }) ()
 
 export default function HomeScreen() {
+
+  // const { width, height } = useWindowDimensions()
+
+  // useEffect( () => {
+
+  //   if (width > height){
+  //     setOrientation ("landscape")
+  //   } else{
+  //     setOrientation("portrait")
+  //   }
+
+  // }, [ width, height])
+  
+  const [ fontsLoaded, fontError ] = useFonts({
+    'Roboto': require('../../assets/fonts/Roboto-Regular.ttf'),
+  });
+
+  if (!fontsLoaded || fontError){
+    return null;
+  }
+
+  if (fontsLoaded && !fontError){
+    
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-      <InputForm label='eddie' onChange={() => ''}/>
-    </ParallaxScrollView>
+    <SafeAreaView style={styles.container}>
+
+    <Provider store= {store}> 
+      
+    <Navigator />
+
+    </Provider>
+      
+    </SafeAreaView>
   );
+
+  }
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  container: {
+    marginTop: 20,
+    flex: 1,
+    width: '100%',
   },
 });

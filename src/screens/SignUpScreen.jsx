@@ -9,7 +9,7 @@ import { useSignUpMutation } from '../services/authenticatorService'
 import { setUser } from '../features/user/userSlice'
 
 import { signupSchema } from '../validations/authSchema'
-import { colors } from '../constants/colors'
+// import { colors } from '../constants/colors'
 
 const SignUpScreen = ({ navigation }) => {
 

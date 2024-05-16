@@ -6,7 +6,7 @@ import ProductItem from '../../components/ProductItem';
 import Search from '../../components/Search';
 
 import { useGetProductsByCategoryQuery } from '../services/shopService'
-import { colors } from '../constants/colors';
+// import { colors } from '../constants/colors';
 
 const ItemListCategory = (
   { setCategorySelected = () => { },

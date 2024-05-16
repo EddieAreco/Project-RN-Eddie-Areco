@@ -7,7 +7,7 @@ import { setUser } from '../features/user/userSlice'
 import { useDispatch } from 'react-redux'
 
 import { signupSchema } from '../validations/authSchema'
-import { colors } from '../constants/colors'
+// import { colors } from '../constants/colors'
 
 const LoginScreen = ({ navigation }) => {
 

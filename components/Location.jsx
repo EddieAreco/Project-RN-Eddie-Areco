@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Dimensions, Image, Touchable, TouchableOpacity, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import * as LocationExpo from 'expo-location'
-import { colors } from '../constants/colors'
-import { googleMapsApiKey } from '../databases/googleMaps'
-import { useGetLocationQuery, usePostLocationMutation } from '../services/shopService'
+// import { colors } from '../constants/colors'
+import { googleMapsApiKey } from '../src/databases/googleMaps'
+import { useGetLocationQuery, usePostLocationMutation } from '../src/services/shopService'
 import { useSelector } from 'react-redux'
 
 const { height, width } = Dimensions.get('window')
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     touchable: {
-        backgroundColor: colors.secondary,
+        backgroundColor: 'violet',
         width: width * 0.6,
         marginTop: 10,
         height: 40,

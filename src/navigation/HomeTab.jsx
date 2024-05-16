@@ -3,11 +3,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { View, StyleSheet, Text } from "react-native"
 import { FontAwesome5, FontAwesome6, FontAwesome } from '@expo/vector-icons';
 
-import Header from "../components/Header"
+import Header from "../../components/Header"
 import CartTabNavigator from "./CartTabNavigator"
 import MyProfileStackNavigator from "./MyProfileStackNavigator";
 
-import { colors } from "../constants/colors";
+// import { colors } from "../constants/colors";
 
 import HomeStack from "./HomeStack";
 
@@ -24,7 +24,7 @@ const HomeTab = () => {
                 headerShown: false,
                 tabBarShowLabel: false,
                 tabBarStyle: styles.tabBar,
-                tabBarActiveTintColor: colors.primary
+                tabBarActiveTintColor: 'purple'
             })}
         >
 

@@ -2,9 +2,9 @@ import { StyleSheet, Text, View, Image, useWindowDimensions, Pressable } from 'r
 import React from 'react'
 import Card from './Card';
 
-import products from '../data/products.json'
+// import products from '../data/products.json'
 import { useDispatch } from 'react-redux';
-import { setIdSelected } from '../features/shop/shopSlice';
+import { setIdSelected } from '../src/features/shop/shopSlice';
 
 const ProductItem = (
     { product,
