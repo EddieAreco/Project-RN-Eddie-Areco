@@ -1,8 +1,6 @@
 import { StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 
-import { NavigationContainer } from '@react-navigation/native'
-
 import HomeStack from './HomeStack'
 import HomeTab from './HomeTab'
 
@@ -18,11 +16,11 @@ const Navigator = () => {
 
     return (
 
-        <NavigationContainer>
+        <>
 
             {user ? <HomeTab /> : <AuthStackNavigator />}
 
-        </NavigationContainer>
+        </>
     )
 }
 
