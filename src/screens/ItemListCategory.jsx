@@ -6,6 +6,7 @@ import ProductItem from '../../components/ProductItem';
 import Search from '../../components/Search';
 
 import { useGetProductsByCategoryQuery } from '../services/shopService'
+import { Colors } from '@/constants/Colors';
 // import { colors } from '../constants/colors';
 
 const ItemListCategory = (
@@ -65,6 +66,6 @@ export default ItemListCategory
 const styles = StyleSheet.create({
   containerItemListCategory: {
     alignItems: 'center',
-    backgroundColor: 'blue',
+    backgroundColor: Colors.project.background,
   },
 })

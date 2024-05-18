@@ -6,6 +6,7 @@ import { useGetProductsByIdQuery } from '../services/shopService'
 
 import { addItem } from '../features/cart/cartSlice'
 import SubmitButton from '../../components/SubmitButton'
+import { Colors } from '@/constants/Colors'
 
 const { height, width } = Dimensions.get('window')
 const Detail = ({ route }) => {
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     containerImage: {
-        height: height * 0.5,
+        height: height * 0.4,
         width: width * 1,
         shadowColor: "@000",
         shadowOffset:{
@@ -88,7 +89,6 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 15,
         alignSelf: 'center',
-        marginTop: 8
     },
     imgDetail: {
         height: '100%',
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     addToCart:{
-        backgroundColor: 'red',
+        backgroundColor: Colors.project.primary,
         width: '90%',
         alignItems: 'center',
         justifyContent: 'center',

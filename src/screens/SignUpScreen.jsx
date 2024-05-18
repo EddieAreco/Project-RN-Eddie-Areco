@@ -9,6 +9,7 @@ import { useSignUpMutation } from '../services/authenticatorService'
 import { setUser } from '../features/user/userSlice'
 
 import { signupSchema } from '../validations/authSchema'
+import { Colors } from '@/constants/Colors'
 // import { colors } from '../constants/colors'
 
 const SignUpScreen = ({ navigation }) => {
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
     },
     options:{
-        color: 'yellow',
+        color: Colors.project.primary,
         fontSize: 15,
     }
 })

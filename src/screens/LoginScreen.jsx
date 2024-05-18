@@ -7,6 +7,8 @@ import { setUser } from '../features/user/userSlice'
 import { useDispatch } from 'react-redux'
 
 import { signupSchema } from '../validations/authSchema'
+import { insertSession } from '../persistence'
+import { Colors } from '@/constants/Colors'
 // import { colors } from '../constants/colors'
 
 const LoginScreen = ({ navigation }) => {
@@ -21,22 +23,32 @@ const LoginScreen = ({ navigation }) => {
     const [triggerSignIn, result] = useSignInMutation()
 
     useEffect(() => {
-
         if (result.isSuccess) {
-            dispatch(
-                setUser({
-                    email: result.data.email,
-                    idToken: result.data.idToken,
-                    localId: result.data.localId
-                })
-            )
+            console.log('result.data es', result.data)
+            insertSession({
+                email: result.data.email,
+                localId: result.data.localId,
+                token: result.data.idToken
+            })
+            try {
+                
+                dispatch(
+                    setUser({
+                        email: result.data.email,
+                        idToken: result.data.idToken,
+                        localId: result.data.localId
+                    })
+                )
+                }
+            catch{
+                console.log('error en insertsession', error)
+            }
         }
     }, [result])
 
     const onSubmit = () => {
 
         try {
-
             // const validation = signupSchema.validateSync({ email, password })
             triggerSignIn({ email, password, returnSecureToken: true })
 
@@ -45,8 +57,6 @@ const LoginScreen = ({ navigation }) => {
             console.log('Catch error LOGIN')
             console.log(error.path)
             console.log(error.message)
-
-
 
         }
 
@@ -110,8 +120,8 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 25,
     },
-    options:{
-        color: 'green',
+    options: {
+        color: Colors.project.primary,
         fontSize: 15,
     }
 })

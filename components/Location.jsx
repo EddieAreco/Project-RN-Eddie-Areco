@@ -1,10 +1,12 @@
-import { StyleSheet, Text, View, Dimensions, Image, Touchable, TouchableOpacity, Alert } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Image, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import * as LocationExpo from 'expo-location'
 // import { colors } from '../constants/colors'
 import { googleMapsApiKey } from '../src/databases/googleMaps'
 import { useGetLocationQuery, usePostLocationMutation } from '../src/services/shopService'
 import { useSelector } from 'react-redux'
+import { Colors } from '@/constants/Colors'
+import SubmitButton from './SubmitButton'
 
 const { height, width } = Dimensions.get('window')
 
@@ -83,9 +85,9 @@ const Location = () => {
             },
             localId: localId
         }),
-        //GUARDAR UBICACION EN BASE DE DATOS
+            //GUARDAR UBICACION EN BASE DE DATOS
 
-        Alert.alert('Ubicación guardada')
+            Alert.alert('Ubicación guardada')
         setConfirm(false)
     }
 
@@ -103,15 +105,15 @@ const Location = () => {
 &markers=color:blue%7Clabel:Me%7C${location.latitude},${location.longitude}&key=${googleMapsApiKey}`
                         }} />
 
-                        <Text> latitud: {location.latitude}, longitud: {location.longitude}</Text>
-                        <Text>direccion: {address}</Text>
+                        <Text style={styles.textLocation}> latitud: {location.latitude}, longitud: {location.longitude}</Text>
+                        <Text style={styles.textLocation}>direccion: {address}</Text>
 
                     </View>
                     :
 
                     <View style={styles.containerLocation}>
 
-<Image style={styles.imgLocation} source={{
+                        <Image style={styles.imgLocation} source={{
                             uri: `https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
                             &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
                             &markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=${googleMapsApiKey}`
@@ -126,31 +128,20 @@ const Location = () => {
 
             {!confirm &&
 
-                <TouchableOpacity style={styles.touchable} onPress={handleGetLocation}>
+                <SubmitButton
+                    onPress={handleGetLocation}
+                    title={location ? 'Cambiar ubicación' : 'Obtener ubicación'}
+                >
 
-                {location ? (
-
-                    <Text style={styles.textTouchable}> 
-
-                    Cambiar ubicación 
-                    
-                    </Text>
-                ): (
-                    
-                    <Text style={styles.textTouchable}> 
-
-                    Obtener ubicación 
-                    
-                    </Text>
-                )}
-
-                </TouchableOpacity>
+                </SubmitButton>
             }
 
             {confirm &&
-                <TouchableOpacity style={styles.touchable} onPress={handleSubmitLocation}>
-                    <Text style={styles.textTouchable}> Guardar ubicación </Text>
-                </TouchableOpacity>
+
+                <SubmitButton
+                    onPress={handleSubmitLocation}
+                    title='Guardar ubicación'
+                />
             }
 
         </View>
@@ -176,19 +167,10 @@ const styles = StyleSheet.create({
     imgLocation: {
         height: '100%',
         width: '100%',
+        marginVertical: 5,
     },
-    touchable: {
-        backgroundColor: 'violet',
-        width: width * 0.6,
-        marginTop: 10,
-        height: 40,
-        borderRadius: 3,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    textTouchable: {
-        color: 'white',
-        fontSize: 15,
-        fontWeight: 'bold',
+    textLocation:{
+        marginVertical: 3,
+        fontSize: 14
     },
 })

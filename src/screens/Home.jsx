@@ -6,6 +6,7 @@ import CategoryItem from '../../components/CategoryItem'
 import Counter from '../../components/Counter'
 
 import { useGetCategoriesQuery } from '../services/shopService'
+import { Colors } from '@/constants/Colors'
 // import { colors } from '../constants/colors'
 
 const Home = ({ route, navigation }) => {
@@ -40,6 +41,6 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'orange'
+    backgroundColor: Colors.project.background
   },
 })

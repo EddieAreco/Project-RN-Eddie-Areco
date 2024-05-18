@@ -1,20 +1,25 @@
-import { Image, StyleSheet, Text, View, Button, TouchableOpacity, Dimensions, Pressable } from 'react-native'
+import { Image, StyleSheet, Text, View, TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native'
 import React from 'react'
 import SubmitButton from '../../components/SubmitButton'
 import Location from '../../components/Location'
 
 import { AntDesign } from '@expo/vector-icons';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useGetProfileImageQuery } from '../services/shopService'
 import Header from '../../components/Header';
+import { truncateSessionsTable } from '../persistence';
+import { clearUser } from '../features/user/userSlice';
+import { Colors } from '@/constants/Colors';
 
 const { height, width } = Dimensions.get('window')
 
 const MyProfile = ({ navigation }) => {
-    
+
     const { imageCamera, localId, user } = useSelector(state => state.authReducer.value)
     const { data: imageFromBase } = useGetProfileImageQuery(localId)
-    
+
+    const dispatch = useDispatch()
+
     console.log('user', user)
     console.log('localId', localId)
 
@@ -22,11 +27,18 @@ const MyProfile = ({ navigation }) => {
         navigation.navigate('Image-selector')
     }
 
-    const closeSession = () => {
-        triggerSignIn({ email: '', password: ''})
-        console.log('email', email)
-        console.log('password', password)
-        navigation.navigate('Login')
+    const closeSession = async () => {
+
+        try {
+
+            const response = await truncateSessionsTable()
+
+            dispatch(clearUser())
+
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     const defaultImageRoute = "https://i.ibb.co/yXZXXJ1/user-login-icon-14.png"
@@ -41,25 +53,18 @@ const MyProfile = ({ navigation }) => {
 
             </View>
 
-            {imageFromBase || imageCamera ? (
-
                 <View style={styles.container}>
-
-                <Pressable
-                onPress={closeSession}
-                style= {styles.closeSession}
-                >
-
-                    <Text>
-                        Cerrar sesión
-                    </Text>
-
-                </Pressable>
 
                     <View>
 
                         <Image
-                            source={{ uri: imageFromBase?.image || imageCamera }}
+                            source={
+                                imageFromBase || imageCamera ?
+                                    { uri: imageFromBase?.image || imageCamera }
+                                :
+                                    { uri: defaultImageRoute }
+                                
+                            }
                             resizeMode='cover'
                             style={styles.imageMyProfile}
                         />
@@ -67,7 +72,7 @@ const MyProfile = ({ navigation }) => {
                         <View style={styles.containerAntDesign}>
                             <TouchableOpacity
                                 onPress={launchCamera}
-                                style={styles.touchable}
+                                style={styles.camera}
                             >
                                 <AntDesign name="camera" size={40} color="black" />
                             </TouchableOpacity>
@@ -76,33 +81,13 @@ const MyProfile = ({ navigation }) => {
 
                     <Location />
 
-                </View>
-
-            ) : (
-                <View style={styles.container}>
-                    <View>
-                        <View style={styles.containerImage}>
-                            <Image
-                                source={{ uri: defaultImageRoute }}
-                                resizeMode='cover'
-                                style={styles.defaultImageRoute}
-                            />
-
-                        </View>
-
-                        <View style={styles.containerAntDesign}>
-                            <TouchableOpacity
-                                onPress={launchCamera}
-                                style={styles.touchable}
-                            >
-                                <AntDesign name="camera" size={40} color="black" />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <Location />
+                    <SubmitButton
+                        title='Cerrar Sesión'
+                        onPress={closeSession}
+                        style={styles.closeSession}
+                    />
 
                 </View>
-            )}
 
         </View>
 
@@ -116,11 +101,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        marginTop: 20,
     },
-    title:{
+    title: {
         fontSize: 30,
         padding: 10,
+        marginVertical: 10,
     },
     imageMyProfile: {
         height: height * 0.25,
@@ -134,30 +119,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: '85%',
     },
-    closeSession:{
-        backgroundColor: 'red',
-        marginBottom: 20
-    },
-    containerImage: {
-        borderRadius: height * 0.5,
-        borderWidth: 1,
-        backgroundColor: 'azure',
-    },
-    defaultImageRoute: {
-        height: height * 0.2,
-        width: width * 0.35,
-        borderRadius: height * 0.5,
-        resizeMode: 'center',
-    },
     containerAntDesign: {
         position: 'absolute',
         bottom: width * 0.01,
         right: width * 0.01,
     },
-    touchable: {
+    camera: {
         backgroundColor: '#ffffff',
         borderRadius: height * 0.5,
         borderWidth: 1,
         padding: 5,
-    }
+    },
+    closeSession: {
+        backgroundColor: 'red',
+        marginBottom: 20
+    },
 })

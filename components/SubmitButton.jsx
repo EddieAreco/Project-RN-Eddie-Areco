@@ -25,7 +25,7 @@ export default SubmitButton
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: Colors.light.icon,
+        backgroundColor: Colors.project.primary,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,

@@ -119,6 +119,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     texttabBarIcon: {
-        fontSize: 15,
+        fontSize: 10,
     }
 })

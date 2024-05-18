@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 import { Entypo } from '@expo/vector-icons'
+import { Colors } from '@/constants/Colors'
 
 const CartItem = ({ cartItem }) => {
 
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         height: 100,
-        backgroundColor: 'pink',
+        backgroundColor: Colors.project.secondary,
         padding: 10,
         margin: 10,
         borderWidth: 2,

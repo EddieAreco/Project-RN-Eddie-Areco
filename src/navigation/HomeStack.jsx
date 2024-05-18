@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux'
 import { useGetProfileImageQuery } from '../services/shopService'
 
 import Feather from '@expo/vector-icons/Feather';
+import { Colors } from '@/constants/Colors'
 
 const Stack = createNativeStackNavigator()
 
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
         width: 140,
     },
     brandName: {
-        color: 'red',
+        color: 'black',
         fontSize: 22,
         fontWeight: '700',
         textAlign: 'center'
@@ -139,11 +140,8 @@ const styles = StyleSheet.create({
         borderRadius: 200,
     },
     headerStyle: {
-        backgroundColor: 'red',
+        backgroundColor: Colors.project.primary,
         borderBottomWidth: 10
     },
-    bar: {
-        backgroundColor: 'blue'
-    }
 })
 

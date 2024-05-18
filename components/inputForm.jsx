@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     TextInput: {
         borderWidth: 2,
-        borderColor: Colors.light.background,
+        borderColor: Colors.project.secondary,
         borderRadius: 10
     }
 })

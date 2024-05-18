@@ -10,21 +10,21 @@ import { Provider } from 'react-redux';
 
 import store from '../../src/Store/index.js'
 
-// import { initSQLiteDB } from './src/persistence';
+import { initSQLiteDB } from '../../src/persistence/index';
 
-// (async () => {
+(async () => {
 
-//   try {
+  try {
 
-//     const response = await initSQLiteDB()
-//     console.log({responseCreatinDB: response})
-//     console.log('DB INICICIALIZADA')
+    const response = await initSQLiteDB()
+    console.log({responseCreatinDB: response})
+    console.log('DB INICICIALIZADA')
     
-//   } catch (error) {
-//     console.log({errorCreatingDB: error})
-//   }
+  } catch (error) {
+    console.log({errorCreatingDB: error})
+  }
 
-// }) ()
+}) ()
 
 export default function HomeScreen() {
 
@@ -67,7 +67,6 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
     flex: 1,
     width: '100%',
   },
