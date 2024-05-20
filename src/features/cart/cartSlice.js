@@ -7,7 +7,8 @@ export const cartSlice = createSlice({
             date: new Date().toLocaleString(),
             total: null,
             products: [],
-            user: 'userLogged'
+            user: 'userLogged',
+            id: 'id'
         }
     },
     reducers:{

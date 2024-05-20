@@ -7,6 +7,7 @@ import { usePostOrderMutation } from '../services/shopService'
 
 const Cart = () => {
 
+  const { localId, user } = useSelector(state => state.authReducer.value)
   const { products: CartData, total } = useSelector(state => state.cartReducer.value)
   //SE HACE UNA DESESTRUCTURACION CON LOS {} PORQUE ME INTERESA TRAER LOS ITEMS Y EL TOTAL DE state.cartReducer.value
 
@@ -14,10 +15,16 @@ const Cart = () => {
   //EL 1ER PARAMETRO ES UNA FUNCION Y EL 2DO ES UNA VARIABLE, A DIFERENCIA DE QUERY, TENEMOS QUE DECIRLE A MUTATION CUANDO QUEREMOS QUE SE LLEVE A CABO
 
   const onConfirmOrder = () => {
-    triggerPostOrder({ products: CartData, user: 'Eddie', date: new Date().toLocaleString(), total: total })
+    triggerPostOrder({ 
+      products: CartData, 
+      id: localId, 
+      date: new Date().toLocaleString(), 
+      total: total,
+      user: user,
+    })
   }
 
-  console.log('result', result)
+  console.log('result en componente Cart', result)
 
   return (
 

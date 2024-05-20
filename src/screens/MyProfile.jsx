@@ -101,11 +101,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
+        marginBottom: 5,
     },
     title: {
         fontSize: 30,
         padding: 10,
-        marginVertical: 10,
     },
     imageMyProfile: {
         height: height * 0.25,

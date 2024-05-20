@@ -1,15 +1,11 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
 import { View, StyleSheet, Text } from "react-native"
-import { FontAwesome5, FontAwesome6, FontAwesome } from '@expo/vector-icons';
-
-import Header from "../../components/Header"
-import CartTabNavigator from "./CartTabNavigator"
-import MyProfileStackNavigator from "./MyProfileStackNavigator";
-
-// import { colors } from "../constants/colors";
+import { FontAwesome5, FontAwesome6, FontAwesome, Octicons } from '@expo/vector-icons';
 
 import HomeStack from "./HomeStack";
+import CartTabNavigator from "./CartTabNavigator"
+import Orders from '../screens/Orders'
 
 const Tab = createBottomTabNavigator()
 
@@ -76,20 +72,20 @@ const HomeTab = () => {
             />
 
             <Tab.Screen
-                name="My Profile"
-                component={MyProfileStackNavigator}
+                name="Orders"
+                component={Orders}
                 options={{
                     tabBarIcon: ({ color }) => {
                         return (
                             <View style={styles.containertabBarIcon}>
 
-                            <FontAwesome
-                                name="user"
-                                size={30}
-                                color={color}
-                            />
+                                <Octicons
+                                    name="list-ordered"
+                                    size={30}
+                                    color={color}
+                                />
 
-                                <Text style={styles.texttabBarIcon}>Mi Perfil</Text>
+                                <Text style={styles.texttabBarIcon}>Pedidos</Text>
 
                             </View>
                         )

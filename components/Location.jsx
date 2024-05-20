@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Dimensions, Image, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import * as LocationExpo from 'expo-location'
-// import { colors } from '../constants/colors'
+
 import { googleMapsApiKey } from '../src/databases/googleMaps'
-import { useGetLocationQuery, usePostLocationMutation } from '../src/services/shopService'
+import { usePostLocationMutation } from '../src/services/shopService'
 import { useSelector } from 'react-redux'
 import { Colors } from '@/constants/Colors'
 import SubmitButton from './SubmitButton'
@@ -155,19 +155,18 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         alignItems: 'center',
-        marginTop: 50,
+        marginTop: 20,
     },
     containerLocation: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: width * 0.8,
-        height: 250,
-        marginBottom: 20,
+        width: width * 0.7,
+        height: 150,
+        marginVertical: 10,
     },
     imgLocation: {
         height: '100%',
         width: '100%',
-        marginVertical: 5,
     },
     textLocation:{
         marginVertical: 3,

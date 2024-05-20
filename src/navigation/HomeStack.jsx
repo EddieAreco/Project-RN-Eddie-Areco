@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Image, Pressable, ImageBackground } from 'react-native'
+import { View, StyleSheet, Text, Image, Pressable, ImageBackground, TouchableOpacity } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import Header from '../../components/Header'
@@ -13,6 +13,7 @@ import { useGetProfileImageQuery } from '../services/shopService'
 
 import Feather from '@expo/vector-icons/Feather';
 import { Colors } from '@/constants/Colors'
+import MyProfileStackNavigator from './MyProfileStackNavigator'
 
 const Stack = createNativeStackNavigator()
 
@@ -36,11 +37,11 @@ const HomeStack = ({ navigation }) => {
 
                 <View style={styles.head}>
 
-                    <Pressable onPress={() => navigation.goBack()} >
+                    <TouchableOpacity onPress={() => navigation.goBack()} >
 
                         <Feather name="arrow-left-circle" size={30} color={'red'} />
 
-                    </Pressable>
+                    </TouchableOpacity>
 
                     <View style={styles.containerBrandName}>
                         <Text style={styles.brandName}>
@@ -48,19 +49,17 @@ const HomeStack = ({ navigation }) => {
                         </Text>
                     </View>
 
-                    {imageFromBase || imageCamera ? (
+                    <TouchableOpacity onPress={() => navigation.navigate('My Profile')}>
                         <Image
-                            source={{ uri: imageFromBase?.image || imageCamera }}
+                            source={
+                                imageFromBase || imageCamera ?
+                                    { uri: imageFromBase?.image || imageCamera } :
+                                    { uri: "https://i.ibb.co/yXZXXJ1/user-login-icon-14.png" }
+                            }
                             resizeMode='cover'
                             style={styles.imageProfile}
                         />
-                    ) : (
-                        <Image
-                            source={{ uri: "https://i.ibb.co/yXZXXJ1/user-login-icon-14.png" }}
-                            style={styles.imageProfile}
-                        />
-                    )
-                    }
+                    </TouchableOpacity>
 
                 </View>
 
@@ -101,6 +100,12 @@ const HomeStack = ({ navigation }) => {
                     component={Detail}
                     name='Detail'
                     options={{ title: 'Detalles del producto' }}
+                />
+
+                <Stack.Screen
+                    component={MyProfileStackNavigator}
+                    name='My Profile'
+                    options={{ title: 'Mi Perfil' }}
                 />
 
             </Stack.Navigator>
