@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View, FlatList, Pressable } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 
 import CartItem from '../../components/CartItem'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { usePostOrderMutation } from '../services/shopService'
+import { clearCart, removeItem } from '../features/cart/cartSlice'
 
 const Cart = () => {
+
+  const dispatch = useDispatch();
 
   const { localId, user } = useSelector(state => state.authReducer.value)
   const { products: CartData, total } = useSelector(state => state.cartReducer.value)
@@ -15,40 +18,74 @@ const Cart = () => {
   //EL 1ER PARAMETRO ES UNA FUNCION Y EL 2DO ES UNA VARIABLE, A DIFERENCIA DE QUERY, TENEMOS QUE DECIRLE A MUTATION CUANDO QUEREMOS QUE SE LLEVE A CABO
 
   const onConfirmOrder = () => {
-    triggerPostOrder({ 
-      products: CartData, 
-      id: localId, 
-      date: new Date().toLocaleString(), 
+
+    triggerPostOrder({
+      products: CartData,
+      id: localId,
+      date: new Date().toLocaleString(),
       total: total,
       user: user,
     })
+
   }
 
   console.log('result en componente Cart', result)
+
+  const removeProduct = () => {
+
+    dispatch(removeItem({ ...products, quantity: 1 }))
+
+}
+  const clearAllCart = () => {
+
+    dispatch(clearCart())
+
+}
 
   return (
 
     <View style={styles.container}>
 
-      <FlatList
-        data={CartData}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => {
-          return <CartItem cartItem={item} />
-        }}
-      />
+{CartData && CartData.length > 0 ? (
 
-      <View>
+        <>
+          <FlatList
+            data={CartData}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => {
+              return <CartItem
+                cartItem={item}
+                onPress={{removeProduct}}
+              />
+            }}
+          />
 
-        <Pressable onPress={() => { }}>
+          <View>
 
-          <Text onPress={ onConfirmOrder }>Confirmar</Text>
+            <Pressable onPress={() => { }}>
 
-        </Pressable>
+              <Text onPress={onConfirmOrder}>Confirmar</Text>
 
-        <Text> Total: ${total} </Text>
+            </Pressable>
 
-      </View>
+            <Pressable onPress={() => { }}>
+
+              <Text onPress={clearAllCart}>Vaciar Carrito</Text>
+
+            </Pressable>
+
+            <Text> Total: ${total} </Text>
+
+          </View>
+
+        </>
+
+      ) : (
+
+        <Text> El carrito está vacío </Text>
+
+      )}
+
     </View>
   )
 }

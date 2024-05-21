@@ -1,24 +1,27 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Pressable } from 'react-native'
 import React from 'react'
 
 import { Entypo } from '@expo/vector-icons'
 import { Colors } from '@/constants/Colors'
 
-const CartItem = ({ cartItem }) => {
+const CartItem = ({ cartItem, onPress }) => {
 
     return (
 
-        <View style= {styles.container} onPress={() => { }}>
+        <View style={styles.container}>
 
-            <View style={ styles.viewCartItem }>
+            <View style={styles.viewCartItem}>
                 <Text>nombre: {cartItem.title}</Text>
                 <Text>categoria: {cartItem.category}</Text>
                 <Text>precio: {cartItem.price}</Text>
                 <Text>cantidad: {cartItem.quantity}</Text>
             </View>
 
-            <Entypo name='trash' size={30} color='black' />
+            <Pressable onPress={ () => {} }>
 
+                <Entypo name='trash' size={30} color='black' />
+
+            </Pressable>
         </View>
     )
 }
@@ -26,7 +29,7 @@ const CartItem = ({ cartItem }) => {
 export default CartItem
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -37,6 +40,6 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 10
     },
-    viewCartItem:{
+    viewCartItem: {
     }
 })

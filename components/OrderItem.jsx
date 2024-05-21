@@ -3,19 +3,31 @@ import { Feather } from "@expo/vector-icons";
 import React from "react";
 
 const OrderItem = ({ order }) => {
-    const total = order.items.reduce(
-        (acc, currentItem) => (acc += currentItem.price * currentItem.quantity),
-        0
-    );
 
     return (
-        <View style={styles.card} onPress={() => {}}>
+        <View style={styles.card} onPress={() => { }}>
+
             <View style={styles.textContainer}>
+
                 <Text style={styles.text}>
-                    {new Date(order?.createdAt || null ).toLocaleString()}
+                    Fecha de compra: {order.date}
                 </Text>
-                <Text style={styles.text2}>${total}</Text>
+
+                <Text style={styles.text2}>
+                    Costo total: ${order.total}
+                </Text>
+
+                <Text style={styles.text2}>
+                    Productos:
+                </Text>
+                {order.products.map((product, index) => (
+                    <Text key={index} style={styles.productText}>
+                        {product.brand} - ${product.price}
+                    </Text>
+                ))}
+
             </View>
+
             <Feather name="search" size={30} color="black" />
         </View>
     );
@@ -25,8 +37,8 @@ export default OrderItem;
 
 const styles = StyleSheet.create({
     card: {
-        height: 100,
-        backgroundColor: 'red',
+        minHeight: 150,
+        backgroundColor: 'white',
         padding: 10,
         margin: 10,
         borderWidth: 2,

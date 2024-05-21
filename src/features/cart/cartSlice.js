@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const cartSlice = createSlice({
     name: 'cart',
     initialState: {
-        value:{
+        value: {
             date: new Date().toLocaleString(),
             total: null,
             products: [],
@@ -11,18 +11,18 @@ export const cartSlice = createSlice({
             id: 'id'
         }
     },
-    reducers:{
-        addItem: ( state, {payload} ) => {
+    reducers: {
+        addItem: (state, { payload }) => {
 
             const productRepetead = state.value.products.find(
                 (item) => item.id === payload.id
             )
 
-            if (productRepetead){
-                
-                const itemUpdate = state.value.products.map( (item) => {
+            if (productRepetead) {
 
-                    if (item.id === payload.id){
+                const itemUpdate = state.value.products.map((item) => {
+
+                    if (item.id === payload.id) {
                         item.quantity += payload.quantity
                         return item
                     }
@@ -31,18 +31,18 @@ export const cartSlice = createSlice({
                 })
 
                 const total = itemUpdate.reduce(
-                    (acc, currentItem) => ( acc += currentItem.price * currentItem.quantity), 0
+                    (acc, currentItem) => (acc += currentItem.price * currentItem.quantity), 0
                 )
 
                 state.value = {
                     ...state.value, products: itemUpdate, total: total, date: new Date().toLocaleDateString()
                 }
-            } else{
+            } else {
 
-                state.value.products.push( payload )
+                state.value.products.push(payload)
 
                 const total = state.value.products.reduce(
-                    (acc, currentItem) => ( acc += currentItem.price * currentItem.quantity), 0
+                    (acc, currentItem) => (acc += currentItem.price * currentItem.quantity), 0
                 )
 
                 state.value = {
@@ -50,12 +50,27 @@ export const cartSlice = createSlice({
                 }
             }
         },
-        removeItem: ( state, {payload} ) =>{
+        removeItem: (state, { payload }) => {
 
-        }
+            state.value.products = state.value.products.filter(
+                (item) => item.id !== payload.id
+            )
+
+            const total = state.value.products.reduce(
+                (acc, currentItem) => (acc += currentItem.price * currentItem.quantity), 0
+            )
+
+            state.value = {
+                ...state.value, total: total, date: new Date().toLocaleDateString()
+            }
+        },
+        clearCart: (state) => {
+            state.value.total = null;
+            state.value.products = [];
+        },
     }
 })
 
-export const { addItem, removeItem } = cartSlice.actions
+export const { addItem, removeItem, clearCart } = cartSlice.actions
 
 export default cartSlice.reducer

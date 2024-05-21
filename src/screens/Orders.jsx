@@ -15,6 +15,8 @@ const OrderScreen = () => {
 
   useEffect(() => {
   
+    try {
+      
     if(isSuccess) {
 
       const responseTransformed = Object.values(orders)
@@ -24,6 +26,9 @@ const OrderScreen = () => {
       setOrdersFiltered(ordersFiltered) 
 
     }
+    } catch (error) {
+      console.log(error)
+    }
 
   }, [orders, isSuccess, user])
 
@@ -31,6 +36,8 @@ const OrderScreen = () => {
 
   return (
     <View>
+
+      { ordersFiltered && ordersFiltered.length > 0 ? (
         <FlatList
             data={ordersFiltered}
             renderItem={({item}) => {
@@ -41,6 +48,10 @@ const OrderScreen = () => {
                 )
             }}
         />
+        ) : (
+          <Text> NO HAY ORDENES </Text>
+        )}
+
     </View>
   )
 }
