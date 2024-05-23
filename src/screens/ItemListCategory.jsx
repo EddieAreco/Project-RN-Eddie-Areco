@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react'
 
 import ProductItem from '../../components/ProductItem';
@@ -39,7 +39,7 @@ const ItemListCategory = (
 
   return (
     <>
-      <View style = {styles.containerItemListCategory}>
+      <ScrollView style = {styles.containerItemListCategory} endFillColor={'black'}>
 
         <Search 
         onSearch={setKeyword}  
@@ -48,15 +48,11 @@ const ItemListCategory = (
         <FlatList
           data={productsFiltered}
 
-          renderItem={({ item }) => 
-
-          <ProductItem product={item} navigation={navigation} />
-
-        }
-
           keyExtractor={(product) => product.id}
+
+          renderItem={({ item }) => <ProductItem product={item} navigation={navigation} />}
         />
-      </View>
+      </ScrollView>
     </>
   )
 }
@@ -65,7 +61,6 @@ export default ItemListCategory
 
 const styles = StyleSheet.create({
   containerItemListCategory: {
-    alignItems: 'center',
     backgroundColor: Colors.project.background,
   },
 })

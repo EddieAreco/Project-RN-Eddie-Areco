@@ -27,26 +27,28 @@ const Cart = () => {
       user: user,
     })
 
+    dispatch(clearCart())
+
   }
 
   console.log('result en componente Cart', result)
 
   const removeProduct = () => {
 
-    dispatch(removeItem({ ...products, quantity: 1 }))
+    dispatch(removeItem({ id }))
 
-}
+  }
   const clearAllCart = () => {
 
     dispatch(clearCart())
 
-}
+  }
 
   return (
 
     <View style={styles.container}>
 
-{CartData && CartData.length > 0 ? (
+      {CartData && CartData.length > 0 ? (
 
         <>
           <FlatList
@@ -55,7 +57,7 @@ const Cart = () => {
             renderItem={({ item }) => {
               return <CartItem
                 cartItem={item}
-                onPress={{removeProduct}}
+                onPress={() => removeProduct(item.id)}
               />
             }}
           />
@@ -92,8 +94,4 @@ const Cart = () => {
 
 export default Cart
 
-const styles = StyleSheet.create({
-  // container: {
-  //   backgroundColor: 'blue',
-  // }
-})
+const styles = StyleSheet.create({})

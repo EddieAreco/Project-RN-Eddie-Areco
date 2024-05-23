@@ -6,10 +6,16 @@ import { FontAwesome5, FontAwesome6, FontAwesome, Octicons } from '@expo/vector-
 import HomeStack from "./HomeStack";
 import CartTabNavigator from "./CartTabNavigator"
 import Orders from '../screens/Orders'
+import { useSelector } from "react-redux";
 
 const Tab = createBottomTabNavigator()
 
 const HomeTab = () => {
+
+    const { products: CartData } = useSelector(state => state.cartReducer.value)
+
+    const cantidadCarrito = CartData.length
+
     return (
 
         <Tab.Navigator
@@ -67,7 +73,7 @@ const HomeTab = () => {
                             </View>
                         )
                     },
-                    tabBarBadge: 3,
+                    tabBarBadge: cantidadCarrito > 0 ? cantidadCarrito : 0,
                 }}
             />
 

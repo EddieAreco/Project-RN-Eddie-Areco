@@ -39,13 +39,13 @@ const HomeStack = ({ navigation }) => {
 
                     <TouchableOpacity onPress={() => navigation.goBack()} >
 
-                        <Feather name="arrow-left-circle" size={30} color={'red'} />
+                        <Feather name="arrow-left-circle" size={30} color={Colors.project.primary} />
 
                     </TouchableOpacity>
 
                     <View style={styles.containerBrandName}>
                         <Text style={styles.brandName}>
-                            EMPORIO ARECO
+                            Emporio Areco
                         </Text>
                     </View>
 
@@ -119,19 +119,20 @@ const styles = StyleSheet.create({
     containerHomeStack: {
         flex: 1,
     },
+    imageBackground:{
+        marginBottom: 10,
+    },
     head: {
-        height: 50,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 30,
-        marginBottom: 10,
-        marginHorizontal: 5,
+        marginTop: 5,
+        marginBottom: 5,
+        marginHorizontal: 8,
     },
     containerBrandName: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: 140,
     },
     brandName: {
         color: 'black',

@@ -48,13 +48,13 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         flexDirection: 'row',
         height: 120,
-        width: 300,
         justifyContent: 'space-between',
-        margin: 10,
+        width: '90%',
+        marginHorizontal: 'auto'
     },
     pressable: {
         flexDirection: 'row',
-        width: 300,
+        width: '100%',
         justifyContent: 'space-between',
         alignItems: 'center',
     },

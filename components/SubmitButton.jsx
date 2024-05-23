@@ -5,10 +5,10 @@ import { Colors } from '../constants/Colors'
 
 const { height, width } = Dimensions.get('window')
 
-const SubmitButton = ({ onPress, title }) => {
+const SubmitButton = ({ style, onPress, title }) => {
     return (
 
-        <View style={styles.container}>
+        <View style={{...styles.container, ...style}}>
 
             <Pressable onPress={onPress} style={styles.pressable}>
 

@@ -50,6 +50,32 @@ export const cartSlice = createSlice({
                 }
             }
         },
+        decreaceItem: (state, { payload })=> {
+            const productRepetead = state.value.products.find(
+                (item) => item.id === payload.id
+            )
+
+            if (productRepetead) {
+
+                const itemUpdate = state.value.products.map((item) => {
+                
+                    if (item.id === payload.id) {
+                        item.quantity -= payload.quantity;
+                        return item.quantity > 0 ? item : null;
+                    }
+                    return item;
+
+                }).filter(item => item !== null);
+
+                const total = itemUpdate.reduce(
+                    (acc, currentItem) => (acc += currentItem.price * currentItem.quantity), 0
+                );
+
+                state.value = {
+                    ...state.value, products: itemUpdate, total: total, date: new Date().toLocaleDateString()
+                }
+            } 
+        },
         removeItem: (state, { payload }) => {
 
             state.value.products = state.value.products.filter(
@@ -71,6 +97,6 @@ export const cartSlice = createSlice({
     }
 })
 
-export const { addItem, removeItem, clearCart } = cartSlice.actions
+export const { addItem, decreaceItem, removeItem, clearCart } = cartSlice.actions
 
 export default cartSlice.reducer

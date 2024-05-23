@@ -2,9 +2,6 @@ import { View, Text, FlatList, StyleSheet } from 'react-native'
 import React from 'react'
 import CategoryItem from '../../components/CategoryItem'
 
-// import categories from '../data/categories.json'
-import Counter from '../../components/Counter'
-
 import { useGetCategoriesQuery } from '../services/shopService'
 import { Colors } from '@/constants/Colors'
 // import { colors } from '../constants/colors'
@@ -15,8 +12,6 @@ const Home = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-
-      <Counter />
 
       <FlatList
         data={categories}

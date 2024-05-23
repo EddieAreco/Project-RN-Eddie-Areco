@@ -84,7 +84,6 @@ const MyProfile = ({ navigation }) => {
                     <SubmitButton
                         title='Cerrar Sesión'
                         onPress={closeSession}
-                        style={styles.closeSession}
                     />
 
                 </View>
