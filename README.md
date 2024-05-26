@@ -18,6 +18,7 @@
 ## Versiones:
 
 Dependencias: 
+
     "@expo/vector-icons": "^14.0.0",
     "@react-navigation/native": "^6.0.2",
     "@reduxjs/toolkit": "^2.2.4",
