@@ -1,4 +1,4 @@
-# Proyecto Final Curso React CoderHouse
+# Proyecto Final Curso React Native CoderHouse
 # Título: Tienda bebidas Emporio Areco
 
 ## Para levantar el proyecto, hay que realizar la siguiente secuencia:
