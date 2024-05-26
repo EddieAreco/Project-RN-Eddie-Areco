@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useGetProductsByIdQuery } from '../services/shopService'
 
 import { addItem, decreaceItem } from '../features/cart/cartSlice'
-import SubmitButton from '../../components/SubmitButton'
 import { Colors } from '@/constants/Colors'
 
 const { height, width } = Dimensions.get('window')

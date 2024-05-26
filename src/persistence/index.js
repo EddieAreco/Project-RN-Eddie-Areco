@@ -3,7 +3,7 @@ import * as ExpoSQLite from "expo-sqlite"
 const db = ExpoSQLite.openDatabase("sessions.db") //SE ABRE UNA BASE DE DATOS QUE VA A ESTAR DENTRO DE LA MEMORIA DEL CELULAR, NO FUNCIONA EN WEB
 
 export const initSQLiteDB = () => {
-    console.log("Will create table")
+    
     const promise = new Promise((resolve, reject) => {
         db.transaction((tx) => {
             //Define SQL statement. BEWARE of PARENTHESIS
@@ -15,7 +15,7 @@ export const initSQLiteDB = () => {
             )
         })
     })
-    console.log("will return promise")
+    
     return promise
 
     //GENERAMOS UNA PROMESA PORQUE TENEMOS UNA TRANSACCION CON LA BAE DE DATOS, LA CUAL NO SABEMOS CUANTO PUEDE TARDAR
@@ -55,27 +55,8 @@ export const getSession = () => {
     return promise
 }
 
-/* export const getSessions = ({
-    email,
-    localId,
-    token
-}) => {
-    const promise = new Promise((resolve, reject) => {
-        db.transaction((tx) => {
-            //Define SQL statement. BEWARE of PARENTHESIS
-            tx.executeSql(
-                `INSERT INTO sessions (email, localId, token) VALUES (?, ?, ?)`,
-                [email, localId, token], //Parameters
-                (_, result) => resolve(result), //Resolve trasaction
-                (_, error) => reject(error) //Transaction error
-            )
-        })
-    })
-    return promise
-} */
-
 export const dropSessionsTable = () => {
-    console.log("Will drop table")
+    
     const promise = new Promise((resolve, reject) => {
         db.transaction((tx) => {
             //Define SQL statement. BEWARE of PARENTHESIS
@@ -86,12 +67,12 @@ export const dropSessionsTable = () => {
             )
         })
     })
-    console.log("will return promise")
+    
     return promise
 }
 
 export const truncateSessionsTable = () => {
-    console.log("Will truncate table")
+    
     const promise = new Promise((resolve, reject) => {
         db.transaction((tx) => {
             //Define SQL statement. BEWARE of PARENTHESIS
@@ -103,6 +84,6 @@ export const truncateSessionsTable = () => {
             )
         })
     })
-    console.log("will return promise")
+
     return promise
 }

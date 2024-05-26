@@ -1,8 +1,7 @@
-import { StyleSheet, Text, View, Image, useWindowDimensions, Pressable } from 'react-native'
+import { StyleSheet, Text, Image, Pressable } from 'react-native'
 import React from 'react'
 import Card from './Card';
 
-// import products from '../data/products.json'
 import { useDispatch } from 'react-redux';
 import { setIdSelected } from '../src/features/shop/shopSlice';
 
@@ -13,8 +12,6 @@ const ProductItem = (
     }) => {
 
     const dispatch = useDispatch();
-
-    const { height, width } = useWindowDimensions()
 
     const handleNavigate = () => {
 

@@ -1,6 +1,5 @@
 import { Dimensions, Pressable, StyleSheet, Text, View } from "react-native"
 import React from "react"
-// import { colors } from "../constants/colors"
 import Card from "./Card"
 import { useDispatch } from "react-redux"
 import { setCategorySelected } from "../src/features/shop/shopSlice"
@@ -35,6 +34,6 @@ const styles = StyleSheet.create({
   text: {
     color: 'green',
     textAlign: "center",
-    fontSize: 20,
+    fontSize: 25,
   },
 })

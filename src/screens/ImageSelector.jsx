@@ -19,9 +19,6 @@ const ImageSelector = ({ navigation }) => {
 
     const { localId } = useSelector(state => state.authReducer.value)
 
-    console.log('image', image)
-    console.log('localId', localId)
-
     const dispatch = useDispatch()
 
     const verifyCameraPermissions = async () => {
@@ -74,7 +71,7 @@ const ImageSelector = ({ navigation }) => {
             }
 
         } catch (error) {
-            console.log(error)
+            Alert.alert('El permiso para acceder a la cámara fue denegado')
         }
 
     }
@@ -102,7 +99,7 @@ const ImageSelector = ({ navigation }) => {
             }
 
         } catch (error) {
-            console.log(error)
+            Alert.alert('Ha habido un error validando la imagen')
         }
 
     }
@@ -118,7 +115,7 @@ const ImageSelector = ({ navigation }) => {
             navigation.goBack()
 
         } catch (error) {
-            console.log(error)
+            Alert.alert('Ha habido un error al confirmar la imagen')
         }
 
     }

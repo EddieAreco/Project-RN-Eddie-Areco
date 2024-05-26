@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, FlatList, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react'
 
 import ProductItem from '../../components/ProductItem';
@@ -7,7 +7,6 @@ import Search from '../../components/Search';
 
 import { useGetProductsByCategoryQuery } from '../services/shopService'
 import { Colors } from '@/constants/Colors';
-// import { colors } from '../constants/colors';
 
 const ItemListCategory = (
   { setCategorySelected = () => { },
@@ -23,8 +22,6 @@ const ItemListCategory = (
 
   const { data: productsFetched, error: errorFetch , isLoading } = useGetProductsByCategoryQuery ( categorySelected )
   //TRAEMOS LA CATEGORIA QUE OBTUVIMOS COMO PARAMETRO DE ROUTE
-
-  console.log('productsFetched', productsFetched)
 
   useEffect(() => {
 

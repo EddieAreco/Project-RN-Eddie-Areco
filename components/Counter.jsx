@@ -1,11 +1,8 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import SubmitButton from './SubmitButton'
 
 const Counter = ( { quantity, addItemCart, decreaceItem } ) => {
-
-    const dispatch = useDispatch()
 
     return (
     

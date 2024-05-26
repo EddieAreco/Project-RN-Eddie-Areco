@@ -27,8 +27,7 @@ export const shopApi = createApi({
             // HACEMOS EL FILTRO EN BASE AL ID
             transformResponse: (response) => {
                 const responseTransformed = Object.values(response)
-
-                console.log('responseTransformed', responseTransformed)
+                
                 if (responseTransformed.length) return responseTransformed[0]
 
                 return responseTransformed

@@ -5,23 +5,30 @@ import { FontAwesome5 } from "@expo/vector-icons"
 import { FontAwesome6 } from '@expo/vector-icons';
 
 const Search = ({ onSearch = () => {}, error = "", goBack = () => {} }) => {
+
   const [keyword, setKeyword] = useState("")
-  console.log(error);
+  
   return (
+
     <View style={styles.container}>
+
       <TextInput
         style={styles.input}
         placeholder="Search..."
         value={keyword}
         onChangeText={setKeyword}
       />
+
       <Pressable onPress={() => onSearch(keyword)}>
         <FontAwesome6 name="searchengin" size={24} color="black" />
       </Pressable>
+
       <Pressable onPress={() => setKeyword("")}>
         <FontAwesome5 name="eraser" size={24} color="black" />
       </Pressable>
+
       {error ? <Text>{error}</Text> : null}
+      
     </View>
   )
 }

@@ -42,8 +42,6 @@ const Cart = () => {
 
   }
 
-  console.log('result en componente Cart', result)
-
   const removeProduct = (id) => {
 
     dispatch(removeItem({ id }))

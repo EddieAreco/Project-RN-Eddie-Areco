@@ -1,9 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, useWindowDimensions, Platform, SafeAreaView } from 'react-native';
-import { useCallback, useEffect, useState } from 'react';
+import { StyleSheet, Platform, SafeAreaView, StatusBar, Alert } from 'react-native';
 
 import { useFonts } from 'expo-font';
-import Home from '../../src/screens/Home';
 
 import Navigator from '../../src/navigation/Navigator';
 import { Provider } from 'react-redux';
@@ -17,28 +14,18 @@ import { initSQLiteDB } from '../../src/persistence/index';
   try {
 
     const response = await initSQLiteDB()
-    console.log({responseCreatinDB: response})
-    console.log('DB INICICIALIZADA')
     
   } catch (error) {
-    console.log({errorCreatingDB: error})
+    if (error instanceof Error) {
+      Alert.alert('Error', `Error creando la base de datos: ${error.message}`);
+    } else {
+      Alert.alert('Error', 'Error creando la base de datos: Error desconocido');
+    }
   }
 
 }) ()
 
 export default function HomeScreen() {
-
-  // const { width, height } = useWindowDimensions()
-
-  // useEffect( () => {
-
-  //   if (width > height){
-  //     setOrientation ("landscape")
-  //   } else{
-  //     setOrientation("portrait")
-  //   }
-
-  // }, [ width, height])
   
   const [ fontsLoaded, fontError ] = useFonts({
     'Roboto': require('../../assets/fonts/Roboto-Regular.ttf'),
@@ -69,5 +56,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+    marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
   },
 });

@@ -20,9 +20,6 @@ const HomeTab = () => {
 
         <Tab.Navigator
             screenOptions={({ route }) => ({
-                // header: () => {
-                //     return <Header route={route} />
-                // },
                 headerShown: false,
                 tabBarShowLabel: false,
                 tabBarStyle: styles.tabBar,

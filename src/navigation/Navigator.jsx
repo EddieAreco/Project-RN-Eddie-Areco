@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import { StyleSheet, Alert } from 'react-native'
+import React, { useEffect } from 'react'
 
 import HomeTab from './HomeTab'
 
@@ -22,12 +22,10 @@ const Navigator = () => {
             try {
                 
                 const response = await getSession()
-                console.log('response de navigator es', response);
 
                 if (response.rows._array.length) {
 
                     const user = response.rows._array[0]
-                    console.log({user});
 
                     dispatch( setUser({
                         email: user.email,
@@ -38,7 +36,10 @@ const Navigator = () => {
                 }
 
             } catch (error) {
-                console.log(error);
+                Alert.alert(
+                    'Error',
+                    `Error al obtener la sesión: ${error.message}`
+                );
             }
         })()
 

@@ -4,7 +4,6 @@ import CategoryItem from '../../components/CategoryItem'
 
 import { useGetCategoriesQuery } from '../services/shopService'
 import { Colors } from '@/constants/Colors'
-// import { colors } from '../constants/colors'
 
 const Home = ({ route, navigation }) => {
 
@@ -12,6 +11,8 @@ const Home = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
+
+      <Text style={styles.header}> Categorias </Text>
 
       <FlatList
         data={categories}
@@ -35,7 +36,12 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'start',
     backgroundColor: Colors.project.background
   },
+  header:{
+    fontSize: 25,
+    alignSelf: 'center',
+    marginVertical: 10
+  }
 })

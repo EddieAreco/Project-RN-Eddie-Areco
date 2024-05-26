@@ -5,7 +5,6 @@ import * as LocationExpo from 'expo-location'
 import { googleMapsApiKey } from '../src/databases/googleMaps'
 import { usePostLocationMutation } from '../src/services/shopService'
 import { useSelector } from 'react-redux'
-import { Colors } from '@/constants/Colors'
 import SubmitButton from './SubmitButton'
 
 const { height, width } = Dimensions.get('window')
@@ -43,13 +42,10 @@ const Location = () => {
                 longitude: locationUser.coords.longitude,
             }
 
-            console.log('objectLocation', objectLocation)
-
             setLocation(objectLocation)
             setConfirm(true)
 
         } catch (err) {
-            console.log('error en location es:', err)
             Alert.alert('Ubicación no encontrada')
         }
     }
@@ -62,13 +58,10 @@ const Location = () => {
                     const url_reverse_geocode = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&key=${googleMapsApiKey}`;
                     const response = await fetch(url_reverse_geocode);
                     const data = await response.json();
-                    console.log('data es', data)
-                    console.log('setadrees es', data.results[0].formatted_address)
                     setAddress(data.results[0].formatted_address);
                 }
             } catch (e) {
                 setErrorLocation(e.message);
-                console.log(errorLocation)
             }
         })();
     }, [location])

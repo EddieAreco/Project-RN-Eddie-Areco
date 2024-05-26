@@ -10,7 +10,6 @@ import { setUser } from '../features/user/userSlice'
 
 import { signupSchema } from '../validations/authSchema'
 import { Colors } from '@/constants/Colors'
-// import { colors } from '../constants/colors'
 
 const SignUpScreen = ({ navigation }) => {
 
@@ -49,10 +48,6 @@ const SignUpScreen = ({ navigation }) => {
             triggerSignUp({ email, password, returnSecureToken: true })
 
         } catch (error) {
-
-            console.log('Catch error signup')
-            console.log(error.path)
-            console.log(error.message)
 
             switch (error.path) {
                 case 'email':

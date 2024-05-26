@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View, TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native'
+import { Image, StyleSheet, Text, View, TouchableOpacity, Dimensions, Alert, ActivityIndicator } from 'react-native'
 import React from 'react'
 import SubmitButton from '../../components/SubmitButton'
 import Location from '../../components/Location'
@@ -6,10 +6,8 @@ import Location from '../../components/Location'
 import { AntDesign } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux'
 import { useGetProfileImageQuery } from '../services/shopService'
-import Header from '../../components/Header';
 import { truncateSessionsTable } from '../persistence';
 import { clearUser } from '../features/user/userSlice';
-import { Colors } from '@/constants/Colors';
 
 const { height, width } = Dimensions.get('window')
 
@@ -19,9 +17,6 @@ const MyProfile = ({ navigation }) => {
     const { data: imageFromBase } = useGetProfileImageQuery(localId)
 
     const dispatch = useDispatch()
-
-    console.log('user', user)
-    console.log('localId', localId)
 
     const launchCamera = () => {
         navigation.navigate('Image-selector')
@@ -38,11 +33,10 @@ const MyProfile = ({ navigation }) => {
             navigation.navigate('AuthStackNavigator')
 
         } catch (error) {
-            console.log('error en closeSession es:', error);
+            Alert.alert('error en closeSession es:', error);
         }
 
     }
-    console.log('user luego de cerrar sesion es', user)
 
     const defaultImageRoute = "https://i.ibb.co/yXZXXJ1/user-login-icon-14.png"
 

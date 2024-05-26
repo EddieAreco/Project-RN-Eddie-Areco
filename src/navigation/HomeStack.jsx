@@ -20,14 +20,14 @@ const HomeStack = ({ navigation }) => {
     const { imageCamera, localId } = useSelector(state => state.authReducer.value)
     const { data: imageFromBase } = useGetProfileImageQuery(localId)
 
-    const prueba = { uri: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGRyaW5rfGVufDB8fDB8fHww" }
+    const backgroundHomeStack = { uri: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGRyaW5rfGVufDB8fDB8fHww" }
 
     return (
         <View style={styles.containerHomeStack}>
 
 
             <ImageBackground
-                source={prueba}
+                source={backgroundHomeStack}
                 resizeMode='cover'
                 blurRadius={5}
                 style={styles.imageBackground}
@@ -70,17 +70,6 @@ const HomeStack = ({ navigation }) => {
                     headerTitleAlign: 'center',
                     headerShown: false
                 }}
-            // screenOptions={
-            //     ({ route }) => (
-            //         {
-            //             header: () => {
-            //                 return <Header title={
-            //                     route.name === 'Home' ? 'CategoryItem' : route.name === 'ItemListCategory' ? route.params.category : 'Detail'
-            //                 } />
-            //             },
-            //         }
-            //     )
-            // }
             >
                 <Stack.Screen
                     component={Home}

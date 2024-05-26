@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import InputForm from '../../components/inputForm'
 import SubmitButton from '../../components/SubmitButton'
@@ -6,12 +6,10 @@ import { useSignInMutation } from '../services/authenticatorService'
 import { setUser } from '../features/user/userSlice'
 import { useDispatch } from 'react-redux'
 
-import { signupSchema } from '../validations/authSchema'
 import { insertSession } from '../persistence'
 import { Colors } from '@/constants/Colors'
 
 import Loading from '../../components/Loading'
-// import { colors } from '../constants/colors'
 
 const LoginScreen = ({ navigation }) => {
 
@@ -19,6 +17,7 @@ const LoginScreen = ({ navigation }) => {
     const [password, setPassword] = useState('')
     const [errorEmail, setErrorEmail] = useState('')
     const [errorPassword, setErrorPassword] = useState('')
+    const [errorLogeo, setErrorLogeo] = useState('')
 
     const [loading, setLoading] = useState(false)
 
@@ -30,7 +29,7 @@ const LoginScreen = ({ navigation }) => {
         setLoading(true)
 
         if (result.isSuccess) {
-            console.log('result.data es', result.data)
+            
             insertSession({
                 email: result.data.email,
                 localId: result.data.localId,
@@ -45,26 +44,30 @@ const LoginScreen = ({ navigation }) => {
                         localId: result.data.localId
                     })
                 )
-                }
-            catch{
-                console.log('error en insertsession', error)
+
+                setErrorLogeo('')
+
+                } catch{
+                Alert.alert('Error en el logeo, ', error)
             }
         }
         setLoading(false)
+
+        if (result.isError) {
+            setErrorLogeo('Error en el logeo, no tiene una cuenta creada');
+        }
 
     }, [result])
 
     const onSubmit = () => {
 
         try {
-            // const validation = signupSchema.validateSync({ email, password })
+            
             triggerSignIn({ email, password, returnSecureToken: true })
 
         } catch (error) {
 
-            console.log('Catch error LOGIN')
-            console.log(error.path)
-            console.log(error.message)
+            Alert.alert('Error al validar el usuario, ', error)
 
         }
 
@@ -95,6 +98,8 @@ const LoginScreen = ({ navigation }) => {
                         error={errorPassword}
                         isSecure={true}
                     />
+
+                    <Text style={{color:'blue'}}> {errorLogeo} </Text>
     
                     <SubmitButton
                         onPress={onSubmit}
