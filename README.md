@@ -1,8 +1,7 @@
-# Welcome to your Expo app 👋
+# Proyecto Final Curso React CoderHouse
+# Título: Tienda bebidas Emporio Areco
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-
-## Get started
+## Para levantar el proyecto, hay que realizar la siguiente secuencia:
 
 1. Install dependencies
 
@@ -13,38 +12,59 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 2. Start the app
 
    ```bash
-    npx expo start
+    npm start
    ```
 
-In the output, you'll find options to open the app in a
+## Versiones:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Dependencias: 
+    "@expo/vector-icons": "^14.0.0",
+    "@react-navigation/native": "^6.0.2",
+    "@reduxjs/toolkit": "^2.2.4",
+    "expo": "^51.0.5",
+    "expo-constants": "~16.0.1",
+    "expo-font": "~12.0.5",
+    "expo-image-picker": "~15.0.4",
+    "expo-linking": "~6.3.1",
+    "expo-location": "~17.0.1",
+    "expo-router": "~3.5.12",
+    "expo-splash-screen": "~0.27.4",
+    "expo-sqlite": "^13.4.0",
+    "expo-status-bar": "~1.12.1",
+    "expo-system-ui": "~3.0.4",
+    "expo-web-browser": "~13.0.3",
+    "node": "^20.13.1",
+    "nodejs": "^0.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.74.1",
+    "react-native-gesture-handler": "~2.16.1",
+    "react-native-reanimated": "~3.10.1",
+    "react-native-safe-area-context": "4.10.1",
+    "react-native-screens": "3.31.1",
+    "react-native-web": "~0.19.10",
+    "react-redux": "^9.1.2",
+    "yup": "^1.4.0",
+    "expo-notifications": "~0.28.3",
+    "expo-device": "~6.0.2"
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## DevDependencias
 
-## Get a fresh project
+    "@babel/core": "^7.20.0",
+    "@redux-devtools/core": "^4.0.0",
+    "@types/jest": "^29.5.12",
+    "@types/react": "~18.2.45",
+    "@types/react-test-renderer": "^18.0.7",
+    "jest": "^29.2.1",
+    "jest-expo": "~51.0.1",
+    "react-test-renderer": "18.2.0",
+    "typescript": "~5.3.3"
 
-When you're ready, run:
+## Consideraciones al margen del proyecto:
 
-```bash
-npm run reset-project
-```
+Debido a las actualizaciones que hubo en el medio del curso de expo, este proyecto fue realizo 3 veces, con muchos obstáculos en el medio.
+Con la última versión, se incluyen muchas configuraciones por defecto, carpetas, screens, componentes, imagenes, que están de más y no se utilizan. Por este motivo es que se prodrá ver que el orden y la ubicación de las carpetas, se encuentran en lugares distintos a los que vimos en clases (por ej: components, assets, constans).
+Por el tiempo acotado que me quedaba para hacer la entrega en tiempo y forma, no pude hacer todo el moviemientos de las mismas para que quedaran como se vio en el curso, pero las rutas y las conexión hecha entre las carpetas, está realizada para que la app funcione.
+Gracias por todo y la dedicación hecha día a día en el curso, hasta pronto!
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
