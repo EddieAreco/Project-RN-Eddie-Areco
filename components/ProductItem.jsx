@@ -56,8 +56,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textCategory: {
-        color: 'green',
-        width: '50%'
+        color: 'black',
+        width: '50%',
+        fontSize: 15
     },
     img: {
         height: 120,

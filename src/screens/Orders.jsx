@@ -4,6 +4,8 @@ import OrderItem from '../../components/OrderItem'
 import { useGetOrdersQuery } from '../services/shopService'
 import { useSelector } from 'react-redux'
 
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6'
+
 const OrderScreen = () => {
 
   const {user} = useSelector( state => state.authReducer.value )
@@ -28,7 +30,7 @@ const OrderScreen = () => {
   }, [orders, isSuccess, user])
 
   return (
-    <View>
+    <View style={styles.container}>
 
       { ordersFiltered && ordersFiltered.length > 0 ? (
         <FlatList
@@ -42,7 +44,13 @@ const OrderScreen = () => {
             }}
         />
         ) : (
-          <Text> NO HAY ORDENES </Text>
+          <Text style={styles.noOrders}> 
+          
+          No hay órdenes
+          <FontAwesome6 name='face-frown-open' size={24} color={'black'} />
+          .Por favor, diríjase a 'Shop'
+
+            </Text>
         )}
 
     </View>
@@ -51,4 +59,13 @@ const OrderScreen = () => {
 
 export default OrderScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noOrders:{
+    fontSize: 20,
+  },
+})

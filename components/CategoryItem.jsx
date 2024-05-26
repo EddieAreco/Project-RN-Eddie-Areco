@@ -32,7 +32,7 @@ export default CategoryItem
 
 const styles = StyleSheet.create({
   text: {
-    color: 'green',
+    color: 'black',
     textAlign: "center",
     fontSize: 25,
   },

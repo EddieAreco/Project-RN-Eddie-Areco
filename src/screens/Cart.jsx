@@ -8,6 +8,8 @@ import { clearCart, removeItem } from '../features/cart/cartSlice'
 import SubmitButton from '@/components/SubmitButton'
 import { useNavigation } from 'expo-router'
 
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6'
+
 const Cart = () => {
   
   const navigation = useNavigation();
@@ -93,7 +95,13 @@ const Cart = () => {
 
       ) : (
 
-        <Text> El carrito está vacío </Text>
+        <Text style={styles.noOrders}> 
+          
+          El carrito está vacío
+          <FontAwesome6 name='face-frown-open' size={24} color={'black'} />
+          .Por favor, diríjase a 'Shop'
+
+            </Text>
 
       )}
 
@@ -106,5 +114,13 @@ export default Cart
 const styles = StyleSheet.create({
   button:{
     alignSelf: 'center'
+  },
+  container:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noOrders:{
+    fontSize: 20,
   },
 })

@@ -1,8 +1,23 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import React from "react";
+import React, { useState } from "react";
+
+import ModalOrder from './ModalOrder'
 
 const OrderItem = ({ order }) => {
+
+    const [modalVisible, setModalVisible] = useState(false);
+    const [selectedOrder, setSelectedOrder] = useState(null);
+
+    const openModal = (order) => {
+        setSelectedOrder(order);
+        setModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setModalVisible(false);
+        setSelectedOrder(null);
+    };
 
     return (
         <View style={styles.card} onPress={() => { }}>
@@ -17,18 +32,17 @@ const OrderItem = ({ order }) => {
                     Costo total: ${order.total}
                 </Text>
 
-                <Text style={styles.text2}>
-                    Productos:
-                </Text>
-                {order.products.map((product, index) => (
-                    <Text key={index} style={styles.productText}>
-                        {product.brand} - ${product.price} - {product.quantity} {product.quantity > 1 ? 'unidades' : 'unidad'}
-                    </Text>
-                ))}
-
             </View>
 
-            <Feather name="search" size={30} color="black" />
+            <Feather name="search" size={30} color="black" onPress={() => openModal(order)} />
+
+            {selectedOrder && (
+                <ModalOrder
+                    modalVisible={modalVisible}
+                    selectedOrder={selectedOrder}
+                    closeModal={closeModal}
+                />
+            )}
         </View>
     );
 };
