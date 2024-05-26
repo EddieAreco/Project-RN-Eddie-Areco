@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import MyProfile from '../screens/MyProfile'
 import ImageSelector from '../screens/ImageSelector'
 import ListAddress from '../screens/ListAddress'
+import AuthStackNavigator from './AuthStackNavigator'
 
 const Stack = createNativeStackNavigator()
 
@@ -30,6 +31,11 @@ const MyProfileStackNavigator = () => {
             <Stack.Screen
                 component={ListAddress}
                 name="ListAddress"
+            />
+
+            <Stack.Screen
+                component={AuthStackNavigator}
+                name="AuthStackNavigator"
             />
 
         </Stack.Navigator>

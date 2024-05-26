@@ -1,5 +1,4 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import counterReducer from '../features/counter/counterSlice'
 import shopReducer from '../features/shop/shopSlice'
 import cartReducer from '../features/cart/cartSlice'
 import authReducer from '../features/user/userSlice'
@@ -11,7 +10,6 @@ import { setupListeners } from '@reduxjs/toolkit/query'
 
 const store = configureStore ({
     reducer:{
-        counterReducer,
         shopReducer,
         cartReducer,
         authReducer,

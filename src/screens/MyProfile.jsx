@@ -31,15 +31,18 @@ const MyProfile = ({ navigation }) => {
 
         try {
 
-            const response = await truncateSessionsTable()
+            await truncateSessionsTable()
 
             dispatch(clearUser())
 
+            navigation.navigate('AuthStackNavigator')
+
         } catch (error) {
-            console.log(error);
+            console.log('error en closeSession es:', error);
         }
 
     }
+    console.log('user luego de cerrar sesion es', user)
 
     const defaultImageRoute = "https://i.ibb.co/yXZXXJ1/user-login-icon-14.png"
 
@@ -80,6 +83,11 @@ const MyProfile = ({ navigation }) => {
                     </View>
 
                     <Location />
+
+                    { !user && <SubmitButton
+                        title='Iniciar Sesión'
+                        onPress={navigation.navigate('AuthStackNavigator')}
+                    />}
 
                     <SubmitButton
                         title='Cerrar Sesión'

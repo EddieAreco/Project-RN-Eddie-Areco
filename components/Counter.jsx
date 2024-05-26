@@ -1,7 +1,6 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { decrement, increment, incrementByAmount, reset } from '../src/features/counter/counterSlice'
+import { StyleSheet, Text, TextInput, View } from 'react-native'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import SubmitButton from './SubmitButton'
 
 const Counter = ( { quantity, addItemCart, decreaceItem } ) => {

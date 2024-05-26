@@ -17,7 +17,7 @@ const CartItem = ({ cartItem, onPress }) => {
                 <Text>cantidad: {cartItem.quantity}</Text>
             </View>
 
-            <Pressable onPress={ () => {} }>
+            <Pressable onPress={ onPress }>
 
                 <Entypo name='trash' size={30} color='black' />
 

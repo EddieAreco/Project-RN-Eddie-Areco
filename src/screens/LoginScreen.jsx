@@ -108,6 +108,12 @@ const LoginScreen = ({ navigation }) => {
                     >
                         <Text style={styles.options}> Registrarme </Text>
                     </Pressable>
+
+                    <Pressable
+                        onPress={() => { navigation.navigate('HomeTab') }}
+                    >
+                        <Text style={styles.options}> Más tarde </Text>
+                    </Pressable>
     
                 </View>
     

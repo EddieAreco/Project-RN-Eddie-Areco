@@ -1,12 +1,16 @@
-import { StyleSheet, Text, View, FlatList, Pressable } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Alert } from 'react-native'
 import React, { useState } from 'react'
 
 import CartItem from '../../components/CartItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { usePostOrderMutation } from '../services/shopService'
 import { clearCart, removeItem } from '../features/cart/cartSlice'
+import SubmitButton from '@/components/SubmitButton'
+import { useNavigation } from 'expo-router'
 
 const Cart = () => {
+  
+  const navigation = useNavigation();
 
   const dispatch = useDispatch();
 
@@ -19,6 +23,11 @@ const Cart = () => {
 
   const onConfirmOrder = () => {
 
+    if (!user) {
+      navigation.navigate('Login');
+      return;
+    }
+
     triggerPostOrder({
       products: CartData,
       id: localId,
@@ -27,13 +36,15 @@ const Cart = () => {
       user: user,
     })
 
+    Alert.alert('Compra confirmada! Ahora se encuentra en el listado de órdenes')
+
     dispatch(clearCart())
 
   }
 
   console.log('result en componente Cart', result)
 
-  const removeProduct = () => {
+  const removeProduct = (id) => {
 
     dispatch(removeItem({ id }))
 
@@ -64,17 +75,17 @@ const Cart = () => {
 
           <View>
 
-            <Pressable onPress={() => { }}>
+            <SubmitButton
+            onPress={onConfirmOrder}
+            title= 'Confirmar'
+            style={styles.button}
+            />
 
-              <Text onPress={onConfirmOrder}>Confirmar</Text>
-
-            </Pressable>
-
-            <Pressable onPress={() => { }}>
-
-              <Text onPress={clearAllCart}>Vaciar Carrito</Text>
-
-            </Pressable>
+            <SubmitButton
+            onPress={clearAllCart}
+            title= 'Vaciar Carrito'
+            style={styles.button}
+            />
 
             <Text> Total: ${total} </Text>
 
@@ -94,4 +105,8 @@ const Cart = () => {
 
 export default Cart
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  button:{
+    alignSelf: 'center'
+  },
+})

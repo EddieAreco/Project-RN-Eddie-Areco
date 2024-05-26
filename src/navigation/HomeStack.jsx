@@ -1,19 +1,17 @@
 import { View, StyleSheet, Text, Image, Pressable, ImageBackground, TouchableOpacity } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import Header from '../../components/Header'
 import Home from '../screens/Home'
 import ItemListCategory from '../screens/ItemListCategory'
 import Detail from '../screens/Detail'
-
-// import { colors } from '../constants/colors'
+import MyProfileStackNavigator from './MyProfileStackNavigator'
 
 import { useSelector } from 'react-redux'
 import { useGetProfileImageQuery } from '../services/shopService'
 
 import Feather from '@expo/vector-icons/Feather';
 import { Colors } from '@/constants/Colors'
-import MyProfileStackNavigator from './MyProfileStackNavigator'
+import AuthStackNavigator from './AuthStackNavigator'
 
 const Stack = createNativeStackNavigator()
 
@@ -119,7 +117,7 @@ const styles = StyleSheet.create({
     containerHomeStack: {
         flex: 1,
     },
-    imageBackground:{
+    imageBackground: {
         marginBottom: 10,
     },
     head: {

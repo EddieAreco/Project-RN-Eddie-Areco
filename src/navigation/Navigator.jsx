@@ -1,11 +1,8 @@
 import { StyleSheet } from 'react-native'
 import React, { useState, useEffect } from 'react'
 
-import HomeStack from './HomeStack'
 import HomeTab from './HomeTab'
 
-import LoginScreen from '../screens/LoginScreen'
-import SignUpScreen from '../screens/SignUpScreen'
 import AuthStackNavigator from './AuthStackNavigator'
 
 import { useSelector, useDispatch } from 'react-redux'

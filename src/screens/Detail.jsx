@@ -34,7 +34,8 @@ const Detail = ({ route }) => {
     const reduceItemCart = () => {
 
         dispatch(decreaceItem({ ...products, quantity: 1 }))
-        Alert.alert('producto restado del carrito')
+
+        quantity > 0 && Alert.alert('producto restado del carrito')
 
     }
 
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         alignItems: 'flex-start',
         gap: 7,
-        width: '100%',
+        width: '90%',
     },
     titleProduct: {
         fontSize: 30

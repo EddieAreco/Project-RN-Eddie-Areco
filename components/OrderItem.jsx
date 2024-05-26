@@ -22,7 +22,7 @@ const OrderItem = ({ order }) => {
                 </Text>
                 {order.products.map((product, index) => (
                     <Text key={index} style={styles.productText}>
-                        {product.brand} - ${product.price}
+                        {product.brand} - ${product.price} - {product.quantity} {product.quantity > 1 ? 'unidades' : 'unidad'}
                     </Text>
                 ))}
 
